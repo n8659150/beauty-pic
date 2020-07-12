@@ -1,8 +1,11 @@
-ul {
-    padding: 0;
-    list-style: none;
+.column {
+    display: flex;
+    flex-direction: column;
+    width: calc(100%/3);
+    /* max-height: 3000vh;
+    overflow: hidden; */
 }
 
-.grid {
-    margin: 0 auto;
+.item, .image {
+    width: 32.8vw;
 }

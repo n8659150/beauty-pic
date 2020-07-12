@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@umijs/hooks": "^1.9.3",
+    "axios": "^0.19.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-masonry-component": "^6.2.1",
+    "react-image": "^4.0.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "0.9.x"
   },

@@ -1,9 +1,56 @@
 import React, { useState, useEffect } from "react";
-import { useRequest } from '@umijs/hooks';
-import { URL, port, apiRoute } from '../../config';
+import { Img } from "react-image";
+import axios from "axios";
+import { URL, port, apiRoute } from "../../config";
 const fullURL = `http://${URL}:${port}/${apiRoute}`;
+function group(array, subGroupLength) {
+    let index = 0;
+    let newArray = [];
+    while (index < array.length) {
+        newArray.push(array.slice(index, (index += subGroupLength)));
+    }
+    return newArray;
+}
 export function Beauty(props) {
-    const { data, error, loading } = useRequest(`${fullURL}=285906324`);
-    if (data) console.log(data.imgSrc);
-    return <div>{props.qid}</div>
+    const [imgData, setImgData] = useState([]);
+    useEffect(() => {
+        axios.get(`${fullURL}=285906324`).then((response) => {
+            if (response.data.imgSrc.length) {
+                const subGroupLength = Math.floor(
+                    response.data.imgSrc.length / 3
+                );
+                const groupedImgArray = group(
+                    response.data.imgSrc,
+                    subGroupLength
+                );
+                setImgData(groupedImgArray);
+            }
+        });
+    }, []);
+    return (
+        imgData.length && (
+            <div className="masonry">
+                {imgData.map((subGroupImage) => {
+                    return (
+                        <div className="column">
+                            {subGroupImage.length &&
+                                subGroupImage.map((imgSrc, index) => (
+                                    <Img
+                                        className="image"
+                                        src={imgSrc}
+                                        decode={false}
+                                        key={index}
+                                        container={(children) => (
+                                            <div className="item">
+                                                {children}
+                                            </div>
+                                        )}
+                                    />
+                                ))}
+                        </div>
+                    );
+                })}
+            </div>
+        )
+    );
 }
