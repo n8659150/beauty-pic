@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Img } from "react-image";
+import VisibilitySensor from 'react-visibility-sensor';
 import axios from "axios";
 import { URL, port, apiRoute } from "../../config";
 const fullURL = `http://${URL}:${port}/${apiRoute}`;
@@ -25,11 +26,12 @@ export function Beauty(props) {
                 );
                 setImgData(groupedImgArray);
             }
-        });
     }, []);
+    });
     return (
         imgData.length && (
-            <div className="masonry">
+            <div>
+            <div className="masonry" id="masonry">
                 {imgData.map((subGroupImage) => {
                     return (
                         <div className="column">
@@ -51,6 +53,10 @@ export function Beauty(props) {
                     );
                 })}
             </div>
+            { imgData.length && <VisibilitySensor onChange={(visible) => console.log('visible', visible) }>
+                 <span>Load more.</span>
+             </VisibilitySensor>}
+             </div>
         )
     );
 }

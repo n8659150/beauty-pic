@@ -1,7 +1,10 @@
+.masonry {
+    display: flex;
+}
 .column {
     display: flex;
     flex-direction: column;
-    width: calc(100%/3);
+    width: calc(100% / 3);
     /* max-height: 3000vh;
     overflow: hidden; */
 }
