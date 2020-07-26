@@ -15,19 +15,22 @@ function group(array, subGroupLength) {
 export function Beauty(props) {
     const [imgData, setImgData] = useState([]);
     useEffect(() => {
-        axios.get(`${fullURL}=285906324`).then((response) => {
-            if (response.data.imgSrc.length) {
-                const subGroupLength = Math.floor(
-                    response.data.imgSrc.length / 3
-                );
-                const groupedImgArray = group(
-                    response.data.imgSrc,
-                    subGroupLength
-                );
-                setImgData(groupedImgArray);
-            }
-    }, []);
-    });
+        const fetchData = async () => {
+          const response = await axios(
+            `${fullURL}=285906324`,
+          );
+          const subGroupLength = Math.floor(
+            response.data.imgSrc.length / 3
+        );
+        const groupedImgArray = group(
+            response.data.imgSrc,
+            subGroupLength
+        );
+        setImgData(groupedImgArray);
+        };
+        fetchData();
+      }, []);
+    
     return (
         imgData.length && (
             <div>
@@ -44,7 +47,9 @@ export function Beauty(props) {
                                         key={index}
                                         container={(children) => (
                                             <div className="item">
+                                                <VisibilitySensor>
                                                 {children}
+                                                </VisibilitySensor>
                                             </div>
                                         )}
                                     />
@@ -53,9 +58,9 @@ export function Beauty(props) {
                     );
                 })}
             </div>
-            { imgData.length && <VisibilitySensor onChange={(visible) => console.log('visible', visible) }>
+            {/* { imgData.length && <VisibilitySensor onChange={(visible) => console.log('visible', visible) }>
                  <span>Load more.</span>
-             </VisibilitySensor>}
+             </VisibilitySensor>} */}
              </div>
         )
     );

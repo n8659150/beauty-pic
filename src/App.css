@@ -1,14 +1,14 @@
 .masonry {
-    display: flex;
+  display: flex;
 }
 .column {
-    display: flex;
-    flex-direction: column;
-    width: calc(100% / 3);
-    /* max-height: 3000vh;
-    overflow: hidden; */
+  display: flex;
+  flex-direction: column;
+  width: calc(100% / 3);
+  /* max-height: 3000vh;
+  overflow: hidden; */
 }
 
 .item, .image {
-    width: 32.8vw;
+  width: 32.8vw;
 }
