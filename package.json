@@ -1,21 +1,21 @@
 {
-  "name": "beauty-pic",
+  "name": "vite-beauty-pic",
   "version": "0.1.0",
-  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
   "dependencies": {
+    "@pika/react": "^16.13.1",
+    "@pika/react-dom": "^16.13.1",
     "axios": "^0.19.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
     "react-image": "^4.0.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "0.9.x",
     "react-visibility-sensor": "^5.1.1"
   },
-  "devDependencies": {},
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+  "devDependencies": {
+    "vite": "^1.0.0-rc.1",
+    "vite-plugin-react": "^3.0.0"
   }
 }
